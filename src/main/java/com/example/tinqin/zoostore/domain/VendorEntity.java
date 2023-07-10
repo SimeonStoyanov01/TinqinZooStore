@@ -26,7 +26,7 @@ public class VendorEntity {
 
     private String phoneNumber;
 
-    @OneToMany//(mappedBy = "vendor") possible if not init Set<ItemEntity> items;
-    ialized in Item
-    private
+    @OneToMany//(mappedBy = "vendor") possible if not initialized in Item
+    private Set<ItemEntity> items;
+
 }
