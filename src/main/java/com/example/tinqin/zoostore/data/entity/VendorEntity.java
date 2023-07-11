@@ -1,4 +1,4 @@
-package com.example.tinqin.zoostore.domain;
+package com.example.tinqin.zoostore.data.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,7 +26,10 @@ public class VendorEntity {
 
     private String phoneNumber;
 
-    @OneToMany//(mappedBy = "vendor") possible if not initialized in Item
+    @OneToMany(mappedBy = "vendor")
     private Set<ItemEntity> items;
+
+    @Column(name = "is_archived")
+    private Boolean isArchived;
 
 }

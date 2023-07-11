@@ -1,8 +1,10 @@
 package com.example.tinqin.zoostore.service;
+
+import com.example.tinqin.zoostore.API.request.GetItemByIDRequest;
+import com.example.tinqin.zoostore.API.response.GetItemByIDResponse;
+
 public interface ItemService {
-    public String getItemByID();
-
-
+     GetItemByIDResponse getItemByID(GetItemByIDRequest getItemByIDRequest);
 
 
 

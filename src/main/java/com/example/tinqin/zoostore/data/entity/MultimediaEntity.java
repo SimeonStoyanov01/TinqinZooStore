@@ -1,4 +1,4 @@
-package com.example.tinqin.zoostore.domain;
+package com.example.tinqin.zoostore.data.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,4 +21,8 @@ public class MultimediaEntity {
     private UUID id;
 
     private String url;
+
+    @Column(name = "is_archived")
+    private Boolean isArchived;
+
 }

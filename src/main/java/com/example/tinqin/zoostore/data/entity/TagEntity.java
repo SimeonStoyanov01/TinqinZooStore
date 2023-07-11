@@ -1,4 +1,4 @@
-package com.example.tinqin.zoostore.domain;
+package com.example.tinqin.zoostore.data.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,11 +17,20 @@ import java.util.UUID;
 @Table(name = "tags")
 public class TagEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     private String title;
 
     @ManyToMany
+    @JoinTable(
+            name="item_tag",
+            joinColumns=@JoinColumn(name = "item_id"),
+            inverseJoinColumns=@JoinColumn(name = "tag_id")
+    )
     private Set<ItemEntity> items;
+
+    @Column(name = "is_archived")
+    private Boolean isArchived;
+
 }

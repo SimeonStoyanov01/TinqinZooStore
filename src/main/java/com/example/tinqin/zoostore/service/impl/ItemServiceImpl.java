@@ -1,6 +1,9 @@
 package com.example.tinqin.zoostore.service.impl;
 
-import com.example.tinqin.zoostore.repository.ItemRepository;
+import com.example.tinqin.zoostore.API.request.GetItemByIDRequest;
+import com.example.tinqin.zoostore.API.response.GetItemByIDResponse;
+import com.example.tinqin.zoostore.data.entity.ItemEntity;
+import com.example.tinqin.zoostore.data.repository.ItemRepository;
 import com.example.tinqin.zoostore.service.ItemService;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +17,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public String getItemByID() {
-        String s ="new string";
-        return s;
+    public GetItemByIDResponse getItemByID(GetItemByIDRequest getItemByIDRequest) {
+        ItemEntity item = itemRepository.findById(getItemByIDRequest.getItemId()).get();
+        GetItemByIDResponse itemResponse = GetItemByIDResponse
+                .builder()
+                .id(item.getId())
+                .title(item.getTitle())
+                .build();
+        return itemResponse;
     }
 }

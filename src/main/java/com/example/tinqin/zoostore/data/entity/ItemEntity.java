@@ -1,4 +1,4 @@
-package com.example.tinqin.zoostore.domain;
+package com.example.tinqin.zoostore.data.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,11 +22,14 @@ public class ItemEntity {
 
     private String title;
     @ManyToOne
-    @JoinColumn(referencedColumnName = "items",nullable = false)
+    //@JoinColumn(referencedColumnName = "items",nullable = false)
     private VendorEntity vendor;
-    @ManyToMany
+    @ManyToMany(mappedBy = "items")
     private Set<TagEntity> tag;
     @OneToMany
     private Set<MultimediaEntity> multimedia;
+
+    @Column(name = "is_archived")
+    private Boolean isArchived;
 
 }
