@@ -11,4 +11,5 @@ import java.util.UUID;
 public class TagCreateResponse {
     private UUID tagID;
     private String title;
+    private Boolean is_archived;
 }

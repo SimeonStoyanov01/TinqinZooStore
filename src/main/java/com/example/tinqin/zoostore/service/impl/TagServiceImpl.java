@@ -8,6 +8,7 @@ import com.example.tinqin.zoostore.API.response.TagDeleteResponse;
 import com.example.tinqin.zoostore.API.response.TagUpdateResponse;
 import com.example.tinqin.zoostore.data.entity.TagEntity;
 import com.example.tinqin.zoostore.data.repository.TagRepository;
+import com.example.tinqin.zoostore.exceptions.NoTagWithSuchIdException;
 import com.example.tinqin.zoostore.exceptions.TagExistsException;
 import com.example.tinqin.zoostore.service.TagService;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class TagServiceImpl implements TagService {
     }
     @Override
     public TagCreateResponse createTag(TagCreateRequest tagCreateRequest) {
+
         if(tagCreateRequest.getTitle()==null||tagCreateRequest.getTitle().trim().equals("")){
             throw new IllegalArgumentException();
         }
@@ -34,11 +36,13 @@ public class TagServiceImpl implements TagService {
         }
         TagEntity tagEntity = new TagEntity();
         tagEntity.setTitle(tagCreateRequest.getTitle());
+        tagEntity.setIsArchived(false);
         this.tagRepository.save(tagEntity);
         TagCreateResponse tagCreateResponse=TagCreateResponse
                 .builder()
                 .tagID(tagEntity.getId())
                 .title(tagEntity.getTitle())
+                .is_archived(tagEntity.getIsArchived())
                 .build();
         return tagCreateResponse;
     }
@@ -51,7 +55,7 @@ public class TagServiceImpl implements TagService {
         if(this.tagRepository.findTagEntityByTitle(tagUpdateRequest.getTitle()).isPresent()){
             throw new TagExistsException();
         }
-        TagEntity tagEntity = tagRepository.findById(tagUpdateRequest.getTagId()).orElse(null);
+        TagEntity tagEntity = tagRepository.findById(tagUpdateRequest.getTagId()).orElseThrow(NoTagWithSuchIdException::new);
         tagEntity.setTitle(tagUpdateRequest.getTitle());
         TagEntity updatedEntity = tagRepository.save(tagEntity);
         TagUpdateResponse tagUpdateResponse = TagUpdateResponse

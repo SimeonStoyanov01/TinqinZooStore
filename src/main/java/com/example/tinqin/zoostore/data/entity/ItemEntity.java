@@ -21,7 +21,7 @@ public class ItemEntity {
     private UUID id;
 
     private String title;
-    @ManyToOne
+    @ManyToOne()
     //@JoinColumn(referencedColumnName = "items",nullable = false)
     private VendorEntity vendor;
     @ManyToMany(mappedBy = "items")

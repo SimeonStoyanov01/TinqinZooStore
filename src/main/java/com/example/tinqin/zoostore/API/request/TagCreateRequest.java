@@ -8,6 +8,5 @@ import java.util.UUID;
 @Setter
 public class TagCreateRequest {
 
-
     private String title;
 }
