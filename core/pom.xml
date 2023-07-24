@@ -2,23 +2,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.example.tinqin</groupId>
+        <groupId>com.example.tinqin.zoostore</groupId>
         <artifactId>ZooStore</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
+
     </parent>
     <artifactId>core</artifactId>
     <name>Archetype - core</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
-            <groupId>com.example.tinqin</groupId>
+            <groupId>com.example.tinqin.zoostore</groupId>
             <artifactId>API</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${revision}</version>
+
         </dependency>
         <dependency>
-            <groupId>com.example.tinqin</groupId>
+            <groupId>com.example.tinqin.zoostore</groupId>
             <artifactId>persitence</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${revision}</version>
+
         </dependency>
     </dependencies>
 </project>
