@@ -29,12 +29,11 @@ public class TagCreateOperationProcessor implements TagCreateOperation {
         tagEntity.setTitle(operationRequest.getTitle());
         tagEntity.setIsArchived(false);
         this.tagRepository.save(tagEntity);
-        TagCreateResponse tagCreateResponse=TagCreateResponse
+        return TagCreateResponse
                 .builder()
                 .tagID(tagEntity.getId())
                 .title(tagEntity.getTitle())
                 .is_archived(tagEntity.getIsArchived())
                 .build();
-        return tagCreateResponse;
     }
 }

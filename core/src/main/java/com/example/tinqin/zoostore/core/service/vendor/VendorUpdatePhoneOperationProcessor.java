@@ -28,13 +28,12 @@ public class VendorUpdatePhoneOperationProcessor implements VendorUpdatePhoneOpe
         VendorEntity vendor=vendorRepository.findById(operationRequest.getUuid()).orElseThrow(NoVendorWithSuchIdException::new);
         vendor.setPhoneNumber(operationRequest.getPhoneNumber());
         VendorEntity updatedEntity=vendorRepository.save(vendor);
-        VendorUpdatePhoneResponse updateResponse= VendorUpdatePhoneResponse
+        return VendorUpdatePhoneResponse
                 .builder()
                 .uuid(updatedEntity.getId())
                 .name(updatedEntity.getName())
                 .phoneNumber(updatedEntity.getPhoneNumber())
                 .build();
-        return updateResponse;
 
     }
 }

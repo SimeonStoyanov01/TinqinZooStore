@@ -28,11 +28,10 @@ public class TagUpdateOperationProcessor implements TagUpdateOperation {
         TagEntity tagEntity = tagRepository.findById(operationRequest.getTagId()).orElseThrow(NoTagWithSuchIdException::new);
         tagEntity.setTitle(operationRequest.getTitle());
         TagEntity updatedEntity = tagRepository.save(tagEntity);
-        TagUpdateResponse tagUpdateResponse = TagUpdateResponse
+        return TagUpdateResponse
                 .builder()
                 .tagId(updatedEntity.getId())
                 .title(updatedEntity.getTitle())
                 .build();
-        return tagUpdateResponse;
     }
 }

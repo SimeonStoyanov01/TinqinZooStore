@@ -7,7 +7,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ItemRepository extends JpaRepository<ItemEntity, UUID> {
-    ItemEntity getByTitle(String title);
 
     Optional<ItemEntity> findItemEntityByTitle(String title);
 

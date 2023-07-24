@@ -30,12 +30,11 @@ public class CreateOperationProcessor implements ItemCreateOperation {
         item.setTitle(operationRequest.getTitle());
         item.setIsArchived(false);
         itemRepository.save(item);
-        ItemCreateResponse createResponse= ItemCreateResponse
+        return ItemCreateResponse
                 .builder()
                 .id(item.getId())
                 .title(item.getTitle())
                 .isArchived(item.getIsArchived())
                 .build();
-        return createResponse;
     }
 }

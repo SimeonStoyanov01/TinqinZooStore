@@ -40,13 +40,12 @@ public class ItemAddMultimediaOperationProcessor implements ItemAddMultimediaOpe
             multimediaCreateResponses.add(multimediaCreateResponse);
         }
 
-        ItemMultimediaAddResponse multimediaAddResponse=ItemMultimediaAddResponse
+        return ItemMultimediaAddResponse
                 .builder()
                 .title(item.getTitle())
                 .vendorName(item.getVendor().getName())
                 .multimedia(multimediaCreateResponses)
                 .itemId(item.getId())
                 .build();
-        return multimediaAddResponse;
     }
 }

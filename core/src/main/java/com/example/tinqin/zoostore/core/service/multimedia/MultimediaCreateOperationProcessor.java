@@ -30,13 +30,12 @@ public class MultimediaCreateOperationProcessor implements MultimediaCreateOpera
         multimediaEntity.setUrl(operationRequest.getUrl());
         multimediaEntity.setIsArchived(false);
         this.multimediaRepository.save(multimediaEntity);
-        MultimediaCreateResponse multimediaCreateResponse=MultimediaCreateResponse
+
+        return MultimediaCreateResponse
                 .builder()
                 .multimediaID(multimediaEntity.getId())
                 .url(multimediaEntity.getUrl())
                 .is_archived(multimediaEntity.getIsArchived())
                 .build();
-
-        return multimediaCreateResponse;
     }
 }

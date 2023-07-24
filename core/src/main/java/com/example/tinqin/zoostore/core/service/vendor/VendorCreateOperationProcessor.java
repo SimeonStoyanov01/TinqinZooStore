@@ -33,12 +33,11 @@ public class VendorCreateOperationProcessor implements VendorCreateOperation {
         vendor.setPhoneNumber(operationRequest.getPhoneNumber());
         vendor.setIsArchived(false);
         vendorRepository.save(vendor);
-        VendorCreateResponse createResponse=VendorCreateResponse
+        return VendorCreateResponse
                 .builder()
                 .uuid(vendor.getId())
                 .name(vendor.getName())
                 .phoneNumber(vendor.getPhoneNumber())
                 .build();
-        return createResponse;
     }
 }

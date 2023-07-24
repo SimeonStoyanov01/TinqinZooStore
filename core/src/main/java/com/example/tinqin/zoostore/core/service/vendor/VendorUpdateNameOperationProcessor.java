@@ -29,11 +29,10 @@ public class VendorUpdateNameOperationProcessor implements VendorUpdateNameOpera
         VendorEntity vendor=vendorRepository.findById(operationRequest.getUuid()).orElseThrow(NoVendorWithSuchIdException::new);
         vendor.setName(operationRequest.getName());
         VendorEntity updatedEntity=vendorRepository.save(vendor);
-        VendorUpdateNameResponse updateResponse= VendorUpdateNameResponse
+        return VendorUpdateNameResponse
                 .builder()
                 .uuid(updatedEntity.getId())
                 .name(updatedEntity.getName())
                 .phoneNumber(updatedEntity.getPhoneNumber())
-                .build();
-        return updateResponse;    }
+                .build();    }
 }

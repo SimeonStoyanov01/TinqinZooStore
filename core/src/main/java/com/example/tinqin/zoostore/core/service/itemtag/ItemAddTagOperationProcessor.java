@@ -45,15 +45,13 @@ public class ItemAddTagOperationProcessor implements ItemAddTagOperation {
             tagCreateResponses.add(currentTagResponse);
         }
 
-        ItemTagAddResponse itemTagAddResponse = ItemTagAddResponse
+
+        return ItemTagAddResponse
                 .builder()
                 .itemId(item.getId())
                 .vendorName(item.getVendor().getName())
                 .tags(tagCreateResponses)
                 .title(item.getTitle())
                 .build();
-
-
-        return itemTagAddResponse;
     }
 }

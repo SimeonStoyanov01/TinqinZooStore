@@ -32,12 +32,10 @@ public class MultimediaUpdateOperationProcessor implements MultimediaUpdateOpera
                 .orElseThrow(NoMultimediaWithSuchUrlException::new);
         multimediaEntity.setUrl(operationRequest.getUrl());
         MultimediaEntity updatedEntity = multimediaRepository.save(multimediaEntity);
-        MultimediaUpdateResponse multimediaUpdateResponse=
-                MultimediaUpdateResponse
-                        .builder()
-                        .multimediaID(updatedEntity.getId())
-                        .url(updatedEntity.getUrl())
-                        .build();
-        return multimediaUpdateResponse;
+        return MultimediaUpdateResponse
+                .builder()
+                .multimediaID(updatedEntity.getId())
+                .url(updatedEntity.getUrl())
+                .build();
     }
 }

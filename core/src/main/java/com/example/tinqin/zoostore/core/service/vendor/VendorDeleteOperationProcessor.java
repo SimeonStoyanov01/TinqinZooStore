@@ -28,12 +28,11 @@ public class VendorDeleteOperationProcessor implements VendorDeleteOperation {
                 .findVendorEntityByName(operationRequest.getName())
                 .orElseThrow(NoVendorWithSuchNameException::new);
         vendorRepository.deleteById(vendor.getId());
-        VendorDeleteResponse deleteResponse = VendorDeleteResponse
+        return VendorDeleteResponse
                 .builder()
                 .uuid(vendor.getId())
                 .name(vendor.getName())
                 .phoneNumber(vendor.getPhoneNumber())
                 .build();
-        return deleteResponse;
     }
 }
