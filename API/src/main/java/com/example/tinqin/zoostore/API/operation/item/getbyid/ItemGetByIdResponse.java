@@ -13,4 +13,5 @@ import java.util.UUID;
 public class ItemGetByIdResponse implements OperationResponse {
     private UUID id;
     private String title;
+    private String vendor;
 }

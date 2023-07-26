@@ -19,11 +19,11 @@ public class GetByIdOperationProcessor implements ItemGetByIdOperation {
     @Override
     public ItemGetByIdResponse process(ItemGetByIdRequest operationRequest) {
      ItemEntity item=this.itemRepository.findItemEntityById(UUID.fromString(operationRequest.getId())).orElseThrow(NoItemWithSuchIdException::new);
-     ItemGetByIdResponse itemGetByIdResponse=ItemGetByIdResponse
-             .builder()
-             .id(item.getId())
-             .title(item.getTitle())
-             .build();
-        return itemGetByIdResponse;
+        return ItemGetByIdResponse
+                .builder()
+                .id(item.getId())
+                .title(item.getTitle())
+                .vendor(item.getVendor().getName())
+                .build();
     }
 }
