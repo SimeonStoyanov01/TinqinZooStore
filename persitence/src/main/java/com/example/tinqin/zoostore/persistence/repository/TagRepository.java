@@ -12,6 +12,8 @@ import java.util.UUID;
 public interface TagRepository extends JpaRepository<TagEntity, UUID> {
     //Optional<TagEntity> findAllById(UUID id);
     Optional<TagEntity> findTagEntityByTitle(String title);
+
+
     int deleteByTitle(String title);
     @Query("SELECT t FROM TagEntity t JOIN t.items i WHERE i.id = :itemId")
     Set<TagEntity> getTagEntitiesByItems(@Param("itemId") UUID itemId);
