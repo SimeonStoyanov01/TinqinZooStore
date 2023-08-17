@@ -1,8 +1,8 @@
 package com.example.tinqin.zoostore.core.service.item;
 
-import com.example.tinqin.zoostore.API.operation.item.getbyid.ItemGetByIdOperation;
-import com.example.tinqin.zoostore.API.operation.item.getbyid.ItemGetByIdRequest;
-import com.example.tinqin.zoostore.API.operation.item.getbyid.ItemGetByIdResponse;
+import com.example.tinqin.zoostore.API.operation.item.getby.id.ItemGetByIdOperation;
+import com.example.tinqin.zoostore.API.operation.item.getby.id.ItemGetByIdRequest;
+import com.example.tinqin.zoostore.API.operation.item.getby.id.ItemGetByIdResponse;
 import com.example.tinqin.zoostore.core.exceptions.NoItemWithSuchIdException;
 import com.example.tinqin.zoostore.persistence.entity.ItemEntity;
 import com.example.tinqin.zoostore.persistence.repository.ItemRepository;

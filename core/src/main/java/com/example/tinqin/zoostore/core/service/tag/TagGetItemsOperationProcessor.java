@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class TagGetItemsOperationProcessor implements TagGetItemsOperation {
@@ -55,13 +56,11 @@ public class TagGetItemsOperationProcessor implements TagGetItemsOperation {
                 tagNames.add(currentTag.getTitle());
             }
 
-            Set<String> multimediaUrlSet = new HashSet<>();
+            Set<String> multimediaUrlSet;
 
             Set<MultimediaEntity> multimediaEntitySet = currentItem.getMultimedia();
 
-            for (MultimediaEntity currentMultimedia : multimediaEntitySet) {
-                multimediaUrlSet.add(currentMultimedia.getUrl());
-            }
+            multimediaUrlSet = multimediaEntitySet.stream().map(MultimediaEntity::getUrl).collect(Collectors.toSet());
 
             GetItemsResponse getItemsResponse =
                     GetItemsResponse

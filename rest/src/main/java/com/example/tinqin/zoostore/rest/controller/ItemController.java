@@ -6,10 +6,14 @@ import com.example.tinqin.zoostore.API.operation.item.create.ItemCreateResponse;
 import com.example.tinqin.zoostore.API.operation.item.getall.ItemGetAllByIdRequest;
 import com.example.tinqin.zoostore.API.operation.item.getall.ItemGetAllByIdResponse;
 import com.example.tinqin.zoostore.API.operation.item.getall.ItemGetAllOperation;
-import com.example.tinqin.zoostore.API.operation.item.getbyid.ItemGetByIdOperation;
-import com.example.tinqin.zoostore.API.operation.item.getbyid.ItemGetByIdRequest;
-import com.example.tinqin.zoostore.API.operation.item.getbyid.ItemGetByIdResponse;
+import com.example.tinqin.zoostore.API.operation.item.getby.id.ItemGetByIdOperation;
+import com.example.tinqin.zoostore.API.operation.item.getby.id.ItemGetByIdRequest;
+import com.example.tinqin.zoostore.API.operation.item.getby.id.ItemGetByIdResponse;
+import com.example.tinqin.zoostore.API.operation.item.getby.title.ItemGetByTitleOperation;
+import com.example.tinqin.zoostore.API.operation.item.getby.title.ItemGetByTitleRequest;
+import com.example.tinqin.zoostore.API.operation.item.getby.title.ItemGetByTitleResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,12 +22,14 @@ import org.springframework.web.bind.annotation.*;
 public class ItemController {
     private final ItemCreateOperation itemService;
     private final ItemGetAllOperation getAllItemsService;
+    private final ItemGetByTitleOperation itemGetByTitleOperation;
 
     private final ItemGetByIdOperation getByIdOperation;
     @Autowired
-    public ItemController(ItemCreateOperation itemService, ItemGetAllOperation getAllItemsService, ItemGetByIdOperation getByIdOperation) {
+    public ItemController(ItemCreateOperation itemService, ItemGetAllOperation getAllItemsService, ItemGetByTitleOperation itemGetByTitleOperation, ItemGetByIdOperation getByIdOperation) {
         this.itemService = itemService;
         this.getAllItemsService = getAllItemsService;
+        this.itemGetByTitleOperation = itemGetByTitleOperation;
         this.getByIdOperation = getByIdOperation;
     }
 
@@ -47,6 +53,18 @@ public class ItemController {
     public ResponseEntity<ItemGetByIdResponse> getItemById(@PathVariable String id){
         ItemGetByIdRequest request=ItemGetByIdRequest.builder().id(id).build();
         return ResponseEntity.ok(getByIdOperation.process(request));
+    }
+
+    @GetMapping("/title")
+    public ResponseEntity<?> getItemsByTitle (@RequestParam String title, @RequestParam(defaultValue = "0") Integer page,@RequestParam(defaultValue = "10") Integer pageSize) {
+        ItemGetByTitleRequest itemGetByTitleRequest = ItemGetByTitleRequest
+                .builder()
+                .itemTitle(title)
+                .page(page)
+                .size(pageSize)
+                .build();
+        ItemGetByTitleResponse itemGetByTitleResponse = itemGetByTitleOperation.process(itemGetByTitleRequest);
+        return new ResponseEntity<>(itemGetByTitleResponse, HttpStatus.OK);
     }
 
 }
