@@ -15,7 +15,7 @@ public interface ZooStoreRestClient {
     @RequestLine("GET /tag/tagName?tagName={tagName}&page={page}&size={size}")
     TagGetItemsResponse tagGetItem(@Param("tagName") String tagName,@Param("page")Integer page,@Param("size")Integer size);
 
-    @RequestLine("GET /items/title?title={title}&pageNumber={page}&pageSize={pageSize}")
+    @RequestLine("GET /items/title?title={title}&page={page}&pageSize={pageSize}")
     ItemGetByTitleResponse getItemsByTitle (@Param("title") String title, @Param("page") Integer page, @Param("pageSize") Integer pageSize);
 
 }
